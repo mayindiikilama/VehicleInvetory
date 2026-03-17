@@ -17,10 +17,10 @@ namespace SIVehicleInventory.Domain.SIEntities
         public SIVehicle(string vehicleCode, Guid locationId, string vehicleType)
         {
             if (string.IsNullOrWhiteSpace(vehicleCode))
-                throw new ArgumentException("Vehicle code is required.", nameof(vehicleCode));
+                throw new ArgumentException("Vehicle code required!", nameof(vehicleCode));
 
             if (string.IsNullOrWhiteSpace(vehicleType))
-                throw new ArgumentException("Vehicle type is required.", nameof(vehicleType));
+                throw new ArgumentException("Vehicle type required!", nameof(vehicleType));
 
             Id = Guid.NewGuid();
             VehicleCode = vehicleCode;
@@ -40,13 +40,13 @@ namespace SIVehicleInventory.Domain.SIEntities
         public void MarkRented()
         {
             if (Status == SIVehicleStatus.Rented)
-                throw new SIDomainException("Vehicle is already rented.");
+                throw new SIDomainException("Vehicle selected is out for rent.");
 
             if (Status == SIVehicleStatus.Reserved)
-                throw new SIDomainException("Vehicle is reserved and cannot be rented directly.");
+                throw new SIDomainException("Vehicle is already reserved and cannot be rented.");
 
             if (Status == SIVehicleStatus.Serviced)
-                throw new SIDomainException("Vehicle under service cannot be rented.");
+                throw new SIDomainException("Vehicle that are under service cannot be rented...");
 
             Status = SIVehicleStatus.Rented;
         }
@@ -54,7 +54,7 @@ namespace SIVehicleInventory.Domain.SIEntities
         public void MarkReserved()
         {
             if (Status != SIVehicleStatus.Available)
-                throw new SIDomainException("Only available vehicles can be reserved.");
+                throw new SIDomainException("Only vehicles that are available can be reserved....");
 
             Status = SIVehicleStatus.Reserved;
         }
@@ -62,7 +62,7 @@ namespace SIVehicleInventory.Domain.SIEntities
         public void MarkServiced()
         {
             if (Status == SIVehicleStatus.Rented)
-                throw new SIDomainException("Rented vehicles cannot be sent to service.");
+                throw new SIDomainException("Unfortunately rented vehicles are not allowed to be sent to service...");
 
             Status = SIVehicleStatus.Serviced;
         }
