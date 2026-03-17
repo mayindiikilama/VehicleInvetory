@@ -11,7 +11,7 @@ namespace SIVehicleInventory.Domain.SIEntities
         public string VehicleType { get; private set; }
         public SIVehicleStatus Status { get; private set; }
 
-        // EF Core needs this
+
         private SIVehicle() { }
 
         public SIVehicle(string vehicleCode, Guid locationId, string vehicleType)
