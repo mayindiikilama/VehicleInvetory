@@ -10,8 +10,4 @@
     <ProjectReference Include="..\SIVehicleInventory.Domain\SIVehicleInventory.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SIServices\" />
-  </ItemGroup>
-
 </Project>
