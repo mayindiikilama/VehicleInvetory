@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36908.2 d17.14
+VisualStudioVersion = 17.14.36908.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIVehicleInventory.Domain", "SIVehicleInventory.Domain\SIVehicleInventory.Domain.csproj", "{9A2CAE3E-04FD-46EF-B16A-24130A17CA6B}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIVehicleInventory.Infrastructure", "SIVehicleInventory.Infrastructure\SIVehicleInventory.Infrastructure.csproj", "{05F5F50E-DDE9-4F48-A593-DF877E37A4FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIVehicleInventory.WebAPI", "SIVehicleInventory.WebAPI\SIVehicleInventory.WebAPI.csproj", "{FB69A808-A739-4D25-824E-43FB5B643A6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIVehicleInventory.ApiGateway", "SIVehicleInventory.ApiGateway\SIVehicleInventory.ApiGateway.csproj", "{C0C83A0F-BABD-45DB-9DDE-8A94B76AFFC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FB69A808-A739-4D25-824E-43FB5B643A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB69A808-A739-4D25-824E-43FB5B643A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB69A808-A739-4D25-824E-43FB5B643A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0C83A0F-BABD-45DB-9DDE-8A94B76AFFC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0C83A0F-BABD-45DB-9DDE-8A94B76AFFC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0C83A0F-BABD-45DB-9DDE-8A94B76AFFC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0C83A0F-BABD-45DB-9DDE-8A94B76AFFC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
