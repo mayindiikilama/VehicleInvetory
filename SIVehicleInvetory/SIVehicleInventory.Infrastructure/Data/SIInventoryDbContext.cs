@@ -35,6 +35,9 @@ namespace SIVehicleInventory.Infrastructure.Data
                 builder.Property(v => v.Status)
                     .HasConversion<int>()
                     .IsRequired();
+
+
+
             });
         }
     }

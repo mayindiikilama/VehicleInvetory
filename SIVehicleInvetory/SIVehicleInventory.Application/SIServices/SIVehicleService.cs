@@ -9,10 +9,10 @@ namespace SIVehicleInventory.Application.SIServices
     {
         private readonly ISIVehicleRepository _repository;
 
-        //public SIVehicleService(ISIVehicleRepository repository)
-        //{
-        //    _repository = repository;
-        //}
+        public SIVehicleService(ISIVehicleRepository repository)
+        {
+            _repository = repository;
+        }
 
         public async Task<VehicleResponseDTO> CreateVehicleAsync(CreateVehicleRequestDTO request)
         {

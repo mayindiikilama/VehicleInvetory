@@ -9,6 +9,7 @@ namespace SIVehicleInventory.Application.SIDTOs
         public string VehicleCode { get; set; } = null!;
 
         [Required]
+
         public Guid LocationId { get; set; }
 
         [Required]
