@@ -3,6 +3,7 @@ using SIVehicleInventory.Application.SIInterfaces;
 using SIVehicleInventory.Application.SIServices;
 using SIVehicleInventory.Infrastructure.Data;
 using SIVehicleInventory.Infrastructure.Repositories;
+using SIVehicleInventory.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +31,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.UseMiddleware<SIGlobalExceptionMiddleware>();
 app.MapControllers();
 
 app.Run();

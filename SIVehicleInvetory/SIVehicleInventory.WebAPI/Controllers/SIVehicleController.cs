@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SIVehicleInventory.Application.SIDTOs;
 using SIVehicleInventory.Application.SIServices;
-using SIVehicleInventory.Domain.SIExceptions;
 
 namespace SIVehicleInventory.WebAPI.Controllers
 {
@@ -59,37 +58,43 @@ namespace SIVehicleInventory.WebAPI.Controllers
             if (!ModelState.IsValid)
                 return ValidationProblem(ModelState);
 
-            try
-            {
-                // Call service to update status
-                var updated = await _vehicleService.UpdateVehicleStatusAsync(id, request.NewStatus);
-                return Ok(updated);
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound();
-            }
-            catch (SIDomainException ex)
-            {
-                // If business rule is broken it gives us error 404
-                return BadRequest(new { error = ex.Message });
-            }
+            //try
+            //{
+            //    // Call service to update status
+            //    var updated = await _vehicleService.UpdateVehicleStatusAsync(id, request.NewStatus);
+            //    return Ok(updated);
+            //}
+            //catch (KeyNotFoundException)
+            //{
+            //    return NotFound();
+            //}
+            //catch (SIDomainException ex)
+            //{
+            //    // If business rule is broken it gives us error 404
+            //    return BadRequest(new { error = ex.Message });
+            //}
+            var updated = await _vehicleService.UpdateVehicleStatusAsync(id, request.NewStatus);
+
+            return Ok(updated);
         }
 
         // DELETE api/v1/vehicles/{id}
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            try
-            {
-                // Ask service to delete vehicle
-                await _vehicleService.DeleteVehicleAsync(id);
-                return NoContent();
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound();
-            }
+            //try
+            //{
+            //    // Ask service to delete vehicle
+            //    await _vehicleService.DeleteVehicleAsync(id);
+            //    return NoContent();
+            //}
+            //catch (KeyNotFoundException)
+            //{
+            //    return NotFound();
+            //}
+            await _vehicleService.DeleteVehicleAsync(id);
+
+            return NoContent();
         }
     }
 }
