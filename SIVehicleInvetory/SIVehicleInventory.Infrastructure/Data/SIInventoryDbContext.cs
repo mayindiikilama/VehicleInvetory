@@ -3,13 +3,19 @@ using SIVehicleInventory.Domain.SIEntities;
 
 namespace SIVehicleInventory.Infrastructure.Data
 {
+
+    // This is the class that connects my app to SQL Server
     public class SIInventoryDbContext : DbContext
     {
+
+        //My constructor receives configuration from my Program.cs
         public SIInventoryDbContext(DbContextOptions<SIInventoryDbContext> options)
             : base(options)
         {
         }
 
+
+        // This represents my Vehicles table in my database
         public DbSet<SIVehicle> Vehicles => Set<SIVehicle>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

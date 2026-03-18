@@ -6,17 +6,23 @@ using SIVehicleInventory.Domain.SIExceptions;
 namespace SIVehicleInventory.WebAPI.Controllers
 {
 
+    // This handles HTTP requests
     [ApiController]
+    // Base URL for all endpoints in this controller
     [Route("api/v1/vehicles")]
     public class SIVehicleController : Controller
     {
+        // This connects controller to service layer
         private readonly ISIVehicleService _vehicleService;
 
+        // Constructor (Dependency Injection)
+        // ASP.NET automatically gives us the service
         public SIVehicleController(ISIVehicleService vehicleService)
         {
             _vehicleService = vehicleService;
         }
 
+        // GET api/vehicle
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VehicleResponseDTO>>> GetAll()
         {
@@ -24,14 +30,18 @@ namespace SIVehicleInventory.WebAPI.Controllers
             return Ok(result);
         }
 
+        // GET api/v1/vehicles/{id}
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<VehicleResponseDTO>> GetById(Guid id)
         {
+            // Ask service for vehicle
             var vehicle = await _vehicleService.GetVehicleByIdAsync(id);
+
             if (vehicle is null) return NotFound();
             return Ok(vehicle);
         }
 
+        // POST api/vehicle
         [HttpPost]
         public async Task<ActionResult<VehicleResponseDTO>> Create([FromBody] CreateVehicleRequestDTO request)
         {
@@ -42,6 +52,7 @@ namespace SIVehicleInventory.WebAPI.Controllers
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
+        // PUT api/v1/vehicles/{id}/status
         [HttpPut("{id:guid}/status")]
         public async Task<ActionResult<VehicleResponseDTO>> UpdateStatus(Guid id, [FromBody] UpdateVehicleStatusRequestDTO request)
         {
@@ -50,6 +61,7 @@ namespace SIVehicleInventory.WebAPI.Controllers
 
             try
             {
+                // Call service to update status
                 var updated = await _vehicleService.UpdateVehicleStatusAsync(id, request.NewStatus);
                 return Ok(updated);
             }
@@ -59,15 +71,18 @@ namespace SIVehicleInventory.WebAPI.Controllers
             }
             catch (SIDomainException ex)
             {
+                // If business rule is broken it gives us error 404
                 return BadRequest(new { error = ex.Message });
             }
         }
 
+        // DELETE api/v1/vehicles/{id}
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             try
             {
+                // Ask service to delete vehicle
                 await _vehicleService.DeleteVehicleAsync(id);
                 return NoContent();
             }
