@@ -1,16 +1,27 @@
-using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
+
+using SIVehicleInventory.ApiGateway;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
-builder.Services.AddOcelot(builder.Configuration);
 
+
+
+// Add API Key auth
+builder.Services.AddAuthentication("ApiKey")
+    .AddScheme<SIApiKeyAuthenticationOptions, SIApiKeyAuthenticationHandler>(
+        "ApiKey", options => { });
+builder.Services.AddAuthorization();
+
+builder.Services
+    .AddReverseProxy()
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
 var app = builder.Build();
 
-await app.UseOcelot();
+app.UseAuthentication();
+app.UseAuthorization();
 
-app.MapGet("/", () => "Hello World!");
+
+app.MapReverseProxy().RequireAuthorization();
 
 app.Run();
